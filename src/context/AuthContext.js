@@ -24,11 +24,14 @@ export const AuthProvider = ({ children }) => {
     verifyAuth();
   }, []);
 
-  const login = (token) => {
-    localStorage.setItem('token', token);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    // Optionally fetch user details here
-  };
+ const login = async (token) => {
+  localStorage.setItem('token', token);
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    // Fetch user details (including role) after login
+  const res = await axios.get('/api/auth/verify');
+  setUser(res.data.user);
+};
+
 
   const logout = () => {
     localStorage.removeItem('token');
