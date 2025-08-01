@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Set base URL
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'http://13.60.56.113:4000';
 
 // Request interceptor
 axios.interceptors.request.use(config => {
